@@ -1,0 +1,10 @@
+.grid span{
+    border: 1px solid;
+    height: 40px;
+    width: 40px;
+}
+
+.grid-container {
+    margin: 0 auto;
+    width: 50%;
+}
