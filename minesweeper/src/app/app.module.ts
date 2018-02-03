@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
+import { SettingsService } from './services/settings.service'
+
 const appRoutes: Routes = [  
   { path: 'game', component: GameComponent},
   { path: 'settings', component: SettingsComponent},
@@ -23,7 +25,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

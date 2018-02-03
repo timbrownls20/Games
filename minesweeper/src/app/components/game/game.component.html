@@ -4,9 +4,12 @@
   </h1>
 </div>
 <div class="grid-container">
-  <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="row grid">
-      <span *ngFor="let j of [1,2,3,4,5,6,7,8,9,10]" >
+  <div *ngFor="let i of model" class="row grid">
+      <span *ngFor="let j of model" >
           {{i}}::{{j}}
       </span>
   </div>
+</div>
+<div class="model-debug">
+  {{this.model | json}}
 </div>

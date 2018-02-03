@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from '../../services/settings.service'
 
 @Component({
   selector: 'app-game',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  model: number[];
+
+  constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
-  }
+
+    debugger;
+
+    
+    this.model = Array<number>();
+    for(let i = 1; i <= this.settingsService.gridSize; i++){
+      this.model.push(i);
+    }
+}
 
 }
