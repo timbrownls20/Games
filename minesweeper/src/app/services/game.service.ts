@@ -33,8 +33,6 @@ export class GameService {
       }        
     }
 
-    //debugger;
-
     let randomMines: [number, number][] = this.getRandomMines(this.model.numberOfMines, this.settingsService.settings.gridDimension);
 
     for(let randomMine of randomMines){
@@ -48,23 +46,29 @@ export class GameService {
 
   getRandomMines(numberOfMines:number, gridDimension:number): [number, number][]{
 
-    let numberArray: number[] = new Array<number>();
-    for(let i = 0; i < gridDimension * gridDimension; i++)
-      numberArray.push(i);
-    
-    numberArray = this.shuffle(numberArray);
+    let randomNumbers: number[] = this.getRandomNumbers(gridDimension * gridDimension)
     
     let randomMines: [number, number][] = new Array<[number, number]>();
     for(let i = 0; i < numberOfMines; i++){
 
-      let row = Math.floor(numberArray[i] / gridDimension);
-      let column = numberArray[i] % gridDimension;
+      let row = Math.floor(randomNumbers[i] / gridDimension);
+      let column = randomNumbers[i] % gridDimension;
 
       randomMines.push([row, column]);
-
     }
     
     return randomMines;
+  }
+
+  getRandomNumbers(maxNumber: number): number[]{
+    
+    let randomNumbers: number[] = new Array<number>();
+    for(let i = 0; i < maxNumber; i++)
+    randomNumbers.push(i);
+    
+    randomNumbers = this.shuffle(randomNumbers);
+
+    return randomNumbers;
   }
 
   shuffle<T>(array: T[]): T[] {
