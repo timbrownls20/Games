@@ -1,9 +1,16 @@
 export class Settings {
     
-    gridSize: number;
+    gridDimension: number;
+
+    private _cellSize: number; 
+
+    get gridSize() : number{
+        return this._cellSize * this.gridDimension;
+    }
 
     constructor(gridSize:number){
-        this.gridSize = gridSize;
+        this.gridDimension = gridSize;
+        this._cellSize = 30;
     }
 
 }

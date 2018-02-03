@@ -11,16 +11,20 @@ export class SettingsComponent implements OnInit {
 
   model: Settings;
 
+  hasSaved: boolean;
+
   constructor(private settingsService: SettingsService) { 
-    this.model = new Settings(10);
+   
   }
 
  
   ngOnInit() {
+    this.model = new Settings(this.settingsService.settings.gridDimension);
   }
 
   @Input() saveSettings (){
-    this.settingsService.settings.gridSize = this.model.gridSize;
+    this.settingsService.settings.gridDimension = this.model.gridDimension;
+    this.hasSaved = true;
   }
 
 }

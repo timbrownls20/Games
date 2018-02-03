@@ -1,13 +1,16 @@
 <h1 class="jumbotron">
   Settings
 </h1>
+<div *ngIf="hasSaved === true" class="alert alert-success" role="alert">
+  Your settings have been saved!
+</div>
 <form>
   <fieldset class="form-group">
     <label>Grid Size</label>
-    <input type="text" class="form-control" name="gridSize" [(ngModel)]="model.gridSize" />
+    <input type="text" class="form-control" name="gridDimension" [(ngModel)]="model.gridDimension" />
   </fieldset>
   <button type="button" class="btn btn-default" (click)="saveSettings()">Save</button>
 </form>
-<div>
+<!-- <div>
   {{model | json}}
-</div>
+</div> -->

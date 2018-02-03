@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from '../../services/settings.service'
+import { SettingsService } from '../../services/settings.service';
+import { Settings } from '../../models/settings';
 
 @Component({
   selector: 'app-game',
@@ -10,14 +11,21 @@ export class GameComponent implements OnInit {
 
   model: number[];
 
+  //gridWidth: number;
+
+  settings: Settings;
+
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
 
+    this.settings = this.settingsService.settings;
+
     this.model = Array<number>();
-    for(let i = 1; i <= this.settingsService.settings.gridSize; i++){
+    for(let i = 1; i <= this.settingsService.settings.gridDimension; i++){
       this.model.push(i);
     }
-}
+
+  }
 
 }
