@@ -1,15 +1,29 @@
 export class Cell {
+    
     row: number;
     column: number;
     hasMine: boolean;
     surroundingMines: number;
     state: CellState;
+    
+    private _display: string;
+
+    get display(): string {
+        if(this.hasMine)
+            return "Mine";
+        else
+            return "Empty";
+    }
 
     constructor(row:number, column:number){
         this.row = row;
         this.column = column;
         this.state = CellState.covered;
+        this.hasMine = false;
+        this.surroundingMines = 0;
     }
+
+    
 }
 
 export enum CellState {
