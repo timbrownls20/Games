@@ -2,3 +2,4 @@ Tasks
 
 1. Implement range validator for settings form
 2. Number of mines in settings form
+3. Implement directive to hide and show form

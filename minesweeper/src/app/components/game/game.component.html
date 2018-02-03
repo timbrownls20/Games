@@ -1,13 +1,8 @@
-<!-- <div class="container">
-  <h1 class="jumbotron">
-    Minesweeper
-  </h1>
-</div> -->
 <div class="grid-container" [style.width.px]="settings.gridSize">
   <div *ngFor="let row of model.state" class="row grid">
-      <span *ngFor="let cell of row" >
-          <app-cell [model]="cell"></app-cell>
-      </span>
+      <app-cell *ngFor="let cell of row" [model]="cell" [class.covered]="cell.state === 0"
+                                                        [class.revealed]="cell.state === 1">
+      </app-cell>
   </div>
 </div>
 <!-- <div class="model-debug">

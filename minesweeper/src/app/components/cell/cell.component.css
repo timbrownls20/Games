@@ -1,0 +1,33 @@
+/* :host ::ng-deep { 
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    font-size: small;
+    background-color: silver;
+    cursor: pointer;
+  } */
+/* span {
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    font-size: small;
+} */
+
+.revealed {
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    font-size: small;
+    background-color: white;
+    cursor: default;
+}
+
+
+.covered {
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    font-size: small;
+    background-color: silver;
+    cursor: pointer;
+}

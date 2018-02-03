@@ -13,14 +13,12 @@ export class GameComponent implements OnInit {
 
   model: Game;
   settings: Settings;
-  //gridDimension: number[];
 
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit() {
 
     this.settings = this.settingsService.settings;
-    //this.gridDimension = this
 
     this.model = new Game();
     for(let i = 0; i < this.settingsService.settings.gridDimension; i++){

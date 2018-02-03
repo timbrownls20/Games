@@ -1,9 +1,3 @@
-.grid span{
-    border: 1px solid;
-    height: 30px;
-    width: 30px;
-    font-size: small;
-}
 
 .grid-container {
     margin: 0 auto;
