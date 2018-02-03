@@ -10,10 +10,10 @@ import { Cell, CellState } from '../../models/cell';
 export class CellComponent implements OnInit {
 
   @Input() model: Cell;
-  @Output() reveal: EventEmitter<boolean>
+  //@Output() reveal: EventEmitter<boolean>
 
   constructor() { 
-    this.reveal = new EventEmitter<boolean>();
+    //this.reveal = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class CellComponent implements OnInit {
 
   onClick(){
     this.model.state = CellState.revealed;
-    this.reveal.emit(true);
+    //this.reveal.emit(true);
   }
 
 
