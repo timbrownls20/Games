@@ -9,7 +9,17 @@ export class GameService {
 
   model:Game;
 
-  constructor(private settingsService: SettingsService ) { }
+  private _cellSize: number; 
+
+    
+  get gridSize() : number{
+        return this._cellSize * this.settingsService.settings.gridDimension;
+  }
+
+  constructor(private settingsService: SettingsService ) { 
+    this._cellSize = 30;
+  }
+
 
   createGame(): Game{
 

@@ -15,14 +15,14 @@ import { Cell } from '../../models/cell';
 export class GameComponent implements OnInit {
 
   model: Game;
-  settings: Settings;
-
-  constructor(private settingsService: SettingsService, private gameService: GameService) { }
+  gridSize: number;
+  
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
 
-    this.settings = this.settingsService.settings;
     this.model = this.gameService.createGame();
+    this.gridSize = this.gameService.gridSize;
   }
 
 }
