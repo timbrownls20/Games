@@ -14,11 +14,8 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
 
-    debugger;
-
-    
     this.model = Array<number>();
-    for(let i = 1; i <= this.settingsService.gridSize; i++){
+    for(let i = 1; i <= this.settingsService.settings.gridSize; i++){
       this.model.push(i);
     }
 }

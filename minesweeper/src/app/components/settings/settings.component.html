@@ -1,12 +1,13 @@
-<div class="container">
-  <h1 class="jumbotron">
-    Settings
-  </h1>
-  <form>
-    <fieldset class="form-group">
-      <label>Grid Size</label>
-      <input type="text" class="form-control" />
-    </fieldset>
-    <button type="button" class="btn btn-default">Save</button>
-  </form>
+<h1 class="jumbotron">
+  Settings
+</h1>
+<form>
+  <fieldset class="form-group">
+    <label>Grid Size</label>
+    <input type="text" class="form-control" name="gridSize" [(ngModel)]="model.gridSize" />
+  </fieldset>
+  <button type="button" class="btn btn-default" (click)="saveSettings()">Save</button>
+</form>
+<div>
+  {{model | json}}
 </div>

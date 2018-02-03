@@ -1,24 +1,17 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Settings } from '../models/settings';
 
 @Injectable()
 export class SettingsService implements OnInit {
 
-  _gridSize:number;
-
-  get gridSize(): number{
-    return this._gridSize;
-  }
+  settings: Settings;
 
   constructor() { 
-  
-    debugger;
-    this._gridSize = 10;
-     
-
+    this.settings = new Settings(10);
   }
 
   ngOnInit(){
-
+    
   }
 
 }
