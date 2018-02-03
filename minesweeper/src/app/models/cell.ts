@@ -10,9 +10,9 @@ export class Cell {
 
     get display(): string {
         if(this.hasMine)
-            return "Mine";
+            return "M";
         else
-            return "Empty";
+            return "";
     }
 
     constructor(row:number, column:number){
