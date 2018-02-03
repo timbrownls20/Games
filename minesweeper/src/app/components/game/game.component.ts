@@ -11,8 +11,6 @@ export class GameComponent implements OnInit {
 
   model: number[];
 
-  //gridWidth: number;
-
   settings: Settings;
 
   constructor(private settingsService: SettingsService) { }

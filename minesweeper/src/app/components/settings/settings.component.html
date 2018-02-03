@@ -1,15 +1,23 @@
-<h1 class="jumbotron">
-  Settings
-</h1>
-<div *ngIf="hasSaved === true" class="alert alert-success" role="alert">
-  Your settings have been saved!
-</div>
-<form>
+<form #settingsForm="ngForm">
+  <div *ngIf="hasSaved === true" class="alert alert-success" role="alert">
+      Your settings have been saved!
+  </div>
   <fieldset class="form-group">
     <label>Grid Size</label>
-    <input type="text" class="form-control" name="gridDimension" [(ngModel)]="model.gridDimension" />
+    <input type="text" class="form-control" name="gridDimension" [(ngModel)]="model.gridDimension" 
+                        required pattern="\d*"
+                        #gridDimension="ngModel" />
+    <div *ngIf="gridDimension.invalid && (gridDimension.dirty || gridDimension.touched)" class="alert alert-danger">
+        <div *ngIf="gridDimension.errors.required"> 
+          grid dimension is required
+        </div>
+        <div *ngIf="gridDimension.errors.pattern"> 
+          grid dimension must be a number
+        </div>
+    </div>
+
   </fieldset>
-  <button type="button" class="btn btn-default" (click)="saveSettings()">Save</button>
+  <button type="button" class="btn btn-default" (click)="saveSettings()" [disabled]="!settingsForm.form.valid">Save</button>
 </form>
 <!-- <div>
   {{model | json}}

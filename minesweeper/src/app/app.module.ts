@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, PatternValidator } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [SettingsService],
+  providers: [SettingsService, PatternValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
