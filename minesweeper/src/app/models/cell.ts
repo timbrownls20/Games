@@ -2,6 +2,7 @@ export class Cell {
     row: number;
     column: number;
     hasMine: boolean;
+    surroundingMines: number;
     state: CellState;
 
     constructor(row:number, column:number){

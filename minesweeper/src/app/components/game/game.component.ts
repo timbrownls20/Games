@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SettingsService } from '../../services/settings.service';
+import { GameService } from '../../services/game.service';
+
 import { Settings } from '../../models/settings';
 import { Game } from '../../models/game';
 import { Cell } from '../../models/cell';
@@ -14,21 +17,12 @@ export class GameComponent implements OnInit {
   model: Game;
   settings: Settings;
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private gameService: GameService) { }
 
   ngOnInit() {
 
     this.settings = this.settingsService.settings;
-
-    this.model = new Game();
-    for(let i = 0; i < this.settingsService.settings.gridDimension; i++){
-
-      this.model.state[i] = [];
-      for(let j = 0; j < this.settingsService.settings.gridDimension; j++){
-        
-        this.model.state[i][j] = new Cell(i, j);
-      }        
-    }
+    this.model = this.gameService.createGame();
   }
 
 }
