@@ -6,32 +6,34 @@
     background-color: silver;
     cursor: pointer;
   } */
-/* span {
-    border: 1px solid;
-    height: 30px;
-    width: 30px;
-    font-size: small;
-} */
 
-.revealed {
-    border: 1px solid;
+.cell div{
     height: 30px;
     width: 30px;
-    font-size: small;
+}
+
+.cell {
+    border: 1px solid;
+     font-size: small;
+ }
+
+
+.mine {
+    background-color: white;
+    color: black;
+    cursor: default;
+    background-image: url('../../../assets/cat.png');
+}
+
+.empty {
     background-color: white;
     color: black;
     cursor: default;
 }
 
-
 .covered {
-    border: 1px solid black;
-    height: 30px;
-    width: 30px;
-    font-size: small;
     background-color: silver;
     color: silver;
+    border-color: black;
     cursor: pointer;
-    /* position:relative;
-    z-index: 99; */
 }

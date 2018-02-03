@@ -1,7 +1,10 @@
 <div class="grid-container" [style.width.px]="gridSize">
   <div *ngFor="let row of model.state" class="row grid">
-      <app-cell *ngFor="let cell of row" [model]="cell" [class.covered]="cell.state === 0"
-                                                        [class.revealed]="cell.state === 1">
+      <app-cell *ngFor="let cell of row" [model]="cell" [class.cell]="true"
+                                                        [class.covered]="cell.state === 0"
+                                                        [class.empty]="cell.state === 1 && !cell.hasMine"
+                                                        [class.mine]="cell.state === 1 && cell.hasMine"
+                                                        >
       </app-cell>
   </div>
 </div>

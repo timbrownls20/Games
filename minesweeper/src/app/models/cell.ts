@@ -10,7 +10,7 @@ export class Cell {
 
     get display(): string {
         if(this.hasMine)
-            return "M";
+            return "";
         else
             return "";
     }
