@@ -8,6 +8,7 @@ import { GameComponent } from './components/game/game.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
 import { SettingsService } from './services/settings.service';
+import { CellComponent } from './components/cell/cell.component';
 
 const appRoutes: Routes = [  
   { path: 'game', component: GameComponent},
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     GameComponent,
-    SettingsComponent
+    SettingsComponent,
+    CellComponent
   ],
   imports: [
     BrowserModule,

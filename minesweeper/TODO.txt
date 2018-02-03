@@ -1,0 +1,4 @@
+Tasks
+
+1. Implement range validator for settings form
+2. Number of mines in settings form
