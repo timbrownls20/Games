@@ -10,11 +10,16 @@
 .cell div{
     height: 30px;
     width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .cell {
     border: 1px solid;
-     font-size: small;
+    font-size: small;
+     
  }
 
 
