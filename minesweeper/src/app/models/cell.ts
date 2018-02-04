@@ -9,8 +9,8 @@ export class Cell {
     private _display: string;
 
     get display(): string {
-        if(this.hasMine)
-            return "";
+        if(this.surroundingMines > 0 && !this.hasMine)
+            return this.surroundingMines.toString();
         else
             return "";
     }

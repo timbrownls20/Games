@@ -23,6 +23,7 @@ export class GameService {
 
   createGame(): Game{
 
+    //.. basic grid
     this.model = new Game();
     for(let i = 0; i < this.settingsService.settings.gridDimension; i++){
 
@@ -33,15 +34,42 @@ export class GameService {
       }        
     }
 
+    //.. place mines
     let randomMines: [number, number][] = this.getRandomMines(this.model.numberOfMines, this.settingsService.settings.gridDimension);
 
     for(let randomMine of randomMines){
       this.model.state[randomMine[0]][randomMine[1]].hasMine = true;
     }
 
+    //..work out surrounding mines
+    for(let i = 0; i < this.settingsService.settings.gridDimension; i++){
+      for(let j = 0; j < this.settingsService.settings.gridDimension; j++){
+        this.model.state[i][j].surroundingMines = this.getSurroundingMineCount(i, j);
+      }        
+    }
 
     return this.model;
 
+  }
+
+  getSurroundingMineCount(centreX:number, centreY:number): number{
+      
+      let mineCount = 0;
+    
+      for(let row = centreX-1; row<=centreX+1;row++){
+        for(let column = centreY-1; column<=centreY+1;column++){
+       
+
+         if(row >=0 && row < this.settingsService.settings.gridDimension
+            && column >=0 && column < this.settingsService.settings.gridDimension
+           && !(row === 0 && column === 0)){
+             
+             if(this.model.state[row][column].hasMine) mineCount++;
+          }
+        }
+     }
+
+     return mineCount;
   }
 
   getRandomMines(numberOfMines:number, gridDimension:number): [number, number][]{
