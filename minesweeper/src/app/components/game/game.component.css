@@ -4,6 +4,10 @@
     /* width: 40%; */
 }
 
+.grid-container .row {
+    flex-wrap: nowrap;
+}
+
 .model-debug {
     margin: 20px auto;
     width: 40%;
