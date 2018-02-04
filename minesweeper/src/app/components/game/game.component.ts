@@ -21,8 +21,6 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
 
-    debugger;
-
     this.model = this.gameService.createGame();
     this.gridSize = this.gameService.gridSize;
   }

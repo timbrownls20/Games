@@ -1,3 +1,5 @@
+
+
 <div class="grid-container" [style.width.px]="gridSize">
   <div *ngFor="let row of model.state" class="row grid">
       <app-cell *ngFor="let cell of row" [model]="cell" [class.cell]="true"
@@ -9,6 +11,8 @@
       </app-cell>
   </div>
 </div>
+<div *ngIf="model.outcome !== 0" class="alert alert-success">{{model.outcomeDisplay}}</div>
+  
 <!-- <div class="model-debug">
   {{this.model | json}}
 </div> -->

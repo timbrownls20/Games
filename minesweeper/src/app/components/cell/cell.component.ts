@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, ViewEncapsulation, Output } from '@angular/core';
 import { Cell, CellState } from '../../models/cell';
+import { GameOutcome } from '../../models/game';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-cell',
@@ -10,22 +12,31 @@ import { Cell, CellState } from '../../models/cell';
 export class CellComponent implements OnInit {
 
   @Input() model: Cell;
-  //@Output() reveal: EventEmitter<boolean>
+  //@Output() clickedMine: EventEmitter<boolean>
 
-  constructor() { 
-    //this.reveal = new EventEmitter<boolean>();
+  constructor(private gameService: GameService) { 
+    //this.clickedMine = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
   }
 
   onClick(){
+    
+    if(!this._gameActive()) return;
+ 
+
     this.model.state = CellState.revealed;
-    //this.reveal.emit(true);
+    if(this.model.hasMine) {
+      //this.clickedMine.emit(true);
+      this.gameService.model.outcome = GameOutcome.Lost;
+    }
   }
 
   onRightClick(){
-    console.log("right click");
+    //console.log("right click");
+
+    if(!this._gameActive()) return;
 
     if(this.model.state == CellState.covered)
       this.model.state = CellState.flag;
@@ -33,7 +44,11 @@ export class CellComponent implements OnInit {
       this.model.state = CellState.covered;
     
     
-      return false;
+    return false;
+  }
+
+  private _gameActive(): boolean{
+    return this.gameService.model.outcome === GameOutcome.InProgress;
   }
 
 
