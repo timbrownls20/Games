@@ -28,6 +28,16 @@
     color: black;
     cursor: default;
     background-image: url('../../../assets/cat.png');
+    background-repeat: no-repeat;
+}
+
+.flag {
+    background-color: silver;
+    color: silver;
+    border-color: black;
+    background-image: url('../../../assets/flag.png');
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .empty {

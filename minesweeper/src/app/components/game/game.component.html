@@ -4,6 +4,7 @@
                                                         [class.covered]="cell.state === 0"
                                                         [class.empty]="cell.state === 1 && !cell.hasMine"
                                                         [class.mine]="cell.state === 1 && cell.hasMine"
+                                                        [class.flag]="cell.state === 2"
                                                         >
       </app-cell>
   </div>

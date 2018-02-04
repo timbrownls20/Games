@@ -24,5 +24,17 @@ export class CellComponent implements OnInit {
     //this.reveal.emit(true);
   }
 
+  onRightClick(){
+    console.log("right click");
+
+    if(this.model.state == CellState.covered)
+      this.model.state = CellState.flag;
+    else if(this.model.state == CellState.flag)
+      this.model.state = CellState.covered;
+    
+    
+      return false;
+  }
+
 
 }

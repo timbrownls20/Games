@@ -19,7 +19,7 @@ export class Cell {
         this.row = row;
         this.column = column;
         this.state = CellState.covered;
-        //this.state = CellState.revealed;
+        //this.state = CellState.flag;
         this.hasMine = false;
         this.surroundingMines = 0;
     }
@@ -29,5 +29,6 @@ export class Cell {
 
 export enum CellState {
     covered = 0,
-    revealed = 1
+    revealed = 1,
+    flag = 2
 }

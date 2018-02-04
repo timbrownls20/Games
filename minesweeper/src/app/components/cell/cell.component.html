@@ -1,4 +1,4 @@
-<div (click)="onClick()" *ngIf="model.state === 0">
+<div (click)="onClick()" (contextmenu)="onRightClick($event)" *ngIf="model.state !== 1">
     <!-- {{model.row}}::{{model.column}} -->
 </div>
 <div *ngIf="model.state === 1">
