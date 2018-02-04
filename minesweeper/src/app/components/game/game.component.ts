@@ -5,7 +5,7 @@ import { GameService } from '../../services/game.service';
 
 import { Settings } from '../../models/settings';
 import { Game } from '../../models/game';
-import { Cell } from '../../models/cell';
+import { Cell, CellState } from '../../models/cell';
 
 @Component({
   selector: 'app-game',
@@ -25,4 +25,13 @@ export class GameComponent implements OnInit {
     this.gridSize = this.gameService.gridSize;
   }
 
+  clickedMine(): void{
+    console.log(`grid detected mine click:: gridSize ${this.gameService}`);
+
+    for(let row of this.model.state){ 
+      for(let cell of row){
+        cell.state = CellState.revealed;
+      }
+    }
+  }
 }

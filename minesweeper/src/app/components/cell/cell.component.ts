@@ -12,10 +12,13 @@ import { GameService } from '../../services/game.service';
 export class CellComponent implements OnInit {
 
   @Input() model: Cell;
-  //@Output() clickedMine: EventEmitter<boolean>
+  @Output() clickedMine: EventEmitter<boolean>
+
+  //outcome: GameOutcome;
 
   constructor(private gameService: GameService) { 
-    //this.clickedMine = new EventEmitter<boolean>();
+    this.clickedMine = new EventEmitter<boolean>();
+    //his.outcome = this.gameService.model.outcome;
   }
 
   ngOnInit() {
@@ -24,17 +27,15 @@ export class CellComponent implements OnInit {
   onClick(){
     
     if(!this._gameActive()) return;
- 
 
     this.model.state = CellState.revealed;
     if(this.model.hasMine) {
-      //this.clickedMine.emit(true);
+      this.clickedMine.emit(true);
       this.gameService.model.outcome = GameOutcome.Lost;
     }
   }
 
   onRightClick(){
-    //console.log("right click");
 
     if(!this._gameActive()) return;
 

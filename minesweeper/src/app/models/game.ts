@@ -15,7 +15,7 @@ export class Game {
             return "You've found all the Tiddles. Well done!!";
         }
 
-        return "";
+        return "Where's Tiddles?";
     }
 
     constructor(){

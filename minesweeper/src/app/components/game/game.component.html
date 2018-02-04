@@ -7,12 +7,14 @@
                                                         [class.empty]="cell.state === 1 && !cell.hasMine"
                                                         [class.mine]="cell.state === 1 && cell.hasMine"
                                                         [class.flag]="cell.state === 2"
+                                                        [class.lost]="model.outcome === 1"
+                                                        (clickedMine)="clickedMine()"
                                                         >
       </app-cell>
   </div>
 </div>
-<div *ngIf="model.outcome !== 0" class="alert alert-success">{{model.outcomeDisplay}}</div>
-  
+<div class="alert alert-success game-outcome">{{model.outcomeDisplay}}</div>
+
 <!-- <div class="model-debug">
   {{this.model | json}}
 </div> -->

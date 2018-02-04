@@ -8,6 +8,15 @@
     flex-wrap: nowrap;
 }
 
+.game-outcome {
+    margin: 20px auto;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .model-debug {
     margin: 20px auto;
     width: 40%;

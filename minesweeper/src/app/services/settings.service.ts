@@ -7,7 +7,7 @@ export class SettingsService implements OnInit {
   settings: Settings;
 
   constructor() { 
-    this.settings = new Settings(10);
+    this.settings = new Settings(12);
   }
 
   ngOnInit(){

@@ -46,6 +46,11 @@
     cursor: default;
 }
 
+.lost {
+    background-color: hotpink!important;
+    transition: background-color 500ms linear;
+}
+
 .covered {
     background-color: silver;
     color: silver;
