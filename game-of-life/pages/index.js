@@ -12,8 +12,8 @@ const Index = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-1">
+        <div className="game-container">
+          <div className="form-panel">
             <form>
               <div className="form-group my-2">
                 <small className="mx-2">columns</small>
@@ -75,7 +75,9 @@ const Index = () => {
               </div>
             </form>
           </div>
-          <div className="col-auto">
+
+
+          <div className="grid-panel">
             <Grid
               dimension={[dimensionX, dimensionY]}
               cellSize={cellSize}
