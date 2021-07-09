@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Cell = ({ margin, classInitial, classOut, classOver, classSelect }) => {
+const Cell = ({ margin, classInitial, classOver, classSelect }) => {
 
   const styleFlexItem = { margin: `${margin}px` };
   const [cellState, dispatch] = useReducer(reducer, {
@@ -23,7 +23,7 @@ const Cell = ({ margin, classInitial, classOut, classOver, classSelect }) => {
         if (classOver) newState.className = classOver;
         break;
       case "mouseOut":
-        if (classOut) newState.className = state.selected ? classSelect : classInitial;
+        if (classOver) newState.className = state.selected ? classSelect : classInitial;
         break;
       case "click":
         if (classSelect) {

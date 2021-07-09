@@ -3,11 +3,19 @@ import Grid from "../src/Grid";
 
 const Index = () => {
 
-  const [columns, setColumns] = useState(10);
-  const [rows, setRows] = useState(50);
-  const [isSquare, setIsSquare] = useState(true);
-  const [cellSize, setCellSize] = useState(15);
-  const [margin, setMargin] = useState(1);
+  const intialState = {
+    rows:50,
+    columns:50,
+    isSquare: true,
+    zoom: 15,
+    margin: 1
+  };
+
+  const [columns, setColumns] = useState(intialState.columns);
+  const [rows, setRows] = useState(intialState.rows);
+  const [isSquare, setIsSquare] = useState(intialState.isSquare);
+  const [zoom, setZoom] = useState(intialState.zoom);
+  const [margin, setMargin] = useState(intialState.margin);
 
   return (
     <>
@@ -46,9 +54,9 @@ const Index = () => {
                   step="1"
                   className="form-control"
                   placeholder="zoom"
-                  value={cellSize}
+                  value={zoom}
                   onChange={(e) => {
-                    setCellSize(parseInt(e.target.value));
+                    setZoom(parseInt(e.target.value));
                   }}
                 />
                 <small className="mx-2">Margin</small>
@@ -80,7 +88,7 @@ const Index = () => {
           <div className="grid-panel">
             <Grid
               dimension={{rows, columns}}
-              cellSize={cellSize}
+              zoom={zoom}
               margin={margin}
             />
           </div>
