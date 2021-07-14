@@ -3,32 +3,42 @@ import utils from "./utils";
 import PropTypes from "prop-types";
 import Cell from "./cell";
 
-const Grid = ({ rows, columns, zoom, margin }) => {
+const Grid = ({ rows, columns, max, zoom, margin }) => {
   
   //.. calculate from cell size
   const height = zoom;
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  var gameStateInitial = Array.from({ length: rows + 1 }, (_, row) => {
-    return Array.from({ length: columns + 1 }, (_, column) => {
-      if (row == 0 || column == 0) return null;
-
-      return {
-        row: row,
-        column: column,
-        selected: false,
-        className: "cell",
-      };
+  const getInitialGameState = (max) => {
+    let gameStateInitial = Array.from({ length: max + 1 }, (_, row) => {
+      return Array.from({ length: max + 1 }, (_, column) => {
+        if (row == 0 || column == 0) return null;
+  
+        return {
+          row: row,
+          column: column,
+          selected: false,
+          className: "cell",
+        };
+      });
     });
-  });
 
-  const [gameState, setGameState] = useState(gameStateInitial);
+    return gameStateInitial;
+  }
 
   const notify = (cellState) => {
     gameState[cellState.row][cellState.column] = cellState;
     setGameState([...gameState]);
   };
+  
+  const [gameState, setGameState] = useState(getInitialGameState(max));
+
+  // useEffect(() => {
+  //   console.log('dimension changed');
+  //   setGameState(getInitialGameState(rows, columns));
+  //   //resetInitialGameState(rows, columns);
+  // }, [rows, columns]);
 
   return (
     <>
@@ -64,6 +74,7 @@ Grid.propTypes = {
   margin: PropTypes.number,
   rows: PropTypes.number,
   columns: PropTypes.number,
+  max: PropTypes.number
 };
 
 export default Grid;

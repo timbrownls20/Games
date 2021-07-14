@@ -3,19 +3,20 @@ import Grid from "../src/Grid";
 import GridSettings from "../src/gridSettings";
 
 const Index = () => {
-  const intialState = {
+  const initialState = {
     rows: 50,
     columns: 50,
+    max: 1000,
     isSquare: true,
     zoom: 15,
     margin: 1,
   };
 
-  const [columns, setColumns] = useState(intialState.columns);
-  const [rows, setRows] = useState(intialState.rows);
-  const [isSquare, setIsSquare] = useState(intialState.isSquare);
-  const [zoom, setZoom] = useState(intialState.zoom);
-  const [margin, setMargin] = useState(intialState.margin);
+  const [columns, setColumns] = useState(initialState.columns);
+  const [rows, setRows] = useState(initialState.rows);
+  const [isSquare, setIsSquare] = useState(initialState.isSquare);
+  const [zoom, setZoom] = useState(initialState.zoom);
+  const [margin, setMargin] = useState(initialState.margin);
 
   return (
     <>
@@ -27,7 +28,7 @@ const Index = () => {
                         zoomState={[zoom, setZoom]}
                         marginState={[margin, setMargin]}
                          />
-          <Grid rows={rows} columns={columns} zoom={zoom} margin={margin} />
+          <Grid rows={rows} columns={columns} zoom={zoom} margin={margin} max={initialState.max} />
         </div>
       </div>
     </>
