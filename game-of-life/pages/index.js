@@ -27,7 +27,7 @@ const Index = () => {
                         zoomState={[zoom, setZoom]}
                         marginState={[margin, setMargin]}
                          />
-          <Grid dimension={{ rows, columns }} zoom={zoom} margin={margin} />
+          <Grid rows={rows} columns={columns} zoom={zoom} margin={margin} />
         </div>
       </div>
     </>

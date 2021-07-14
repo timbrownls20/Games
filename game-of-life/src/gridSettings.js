@@ -16,6 +16,7 @@
           <input
             type="number"
             step="5"
+            min="0"
             className="form-control"
             placeholder="number of columns"
             value={columns}
@@ -28,6 +29,7 @@
           <input
             type="number"
             step="5"
+            min="0"
             className="form-control"
             placeholder="number of rows"
             value={rows}
@@ -39,7 +41,7 @@
           <small className="mx-2">zoom</small>
           <input
             type="number"
-            step="1"
+            min="0"
             className="form-control"
             placeholder="zoom"
             value={zoom}
@@ -47,9 +49,10 @@
               setZoom(parseInt(e.target.value));
             }}
           />
-          <small className="mx-2">Margin</small>
+          <small className="mx-2">margin</small>
           <input
             type="number"
+            min="0"
             className="form-control"
             placeholder="margin px"
             value={margin}
