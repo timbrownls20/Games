@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import memoize from "fast-memoize";
 import utils from "./utils";
 import PropTypes from "prop-types";
 import Cell from "./cell";
@@ -26,20 +27,14 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
 
     return gameStateInitial;
   }
+  const gameState = getInitialGameState(max);
 
-  const notify = (cellState) => {
+  const notify = useCallback((cellState) => {
+    //.. do nothing
     gameState[cellState.row][cellState.column] = cellState;
-    setGameState([...gameState]);
-  };
+    console.log(`notify ${JSON.stringify(gameState)}`)
+  },[gameState]);
   
-  const [gameState, setGameState] = useState(getInitialGameState(max));
-
-  // useEffect(() => {
-  //   console.log('dimension changed');
-  //   setGameState(getInitialGameState(rows, columns));
-  //   //resetInitialGameState(rows, columns);
-  // }, [rows, columns]);
-
   return (
     <>
       <div className="grid-panel">
@@ -52,7 +47,7 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
                   <Cell
                     key={`${row}-${column}`}
                     margin={margin}
-                    cellState={gameState[row][column]}
+                    gameState={gameState[row][column]}
                     notify={notify}
                     classInitial="cell"
                     classOver="cell-over"
@@ -64,6 +59,9 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
           );
         })}
       </div>
+      {/* <div>
+        {JSON.stringify(gameState)}
+      </div> */}
     </>
   );
 };

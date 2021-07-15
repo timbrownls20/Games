@@ -4,11 +4,11 @@ import GridSettings from "../src/gridSettings";
 
 const Index = () => {
   const initialState = {
-    rows: 50,
-    columns: 50,
-    max: 1000,
+    rows: 10,
+    columns: 10,
+    max: 10,
     isSquare: true,
-    zoom: 15,
+    zoom: 50,
     margin: 1,
   };
 

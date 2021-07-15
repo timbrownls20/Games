@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect, useReducer } from "react";
 
 // eslint-disable-next-line react/prop-types
 const Cell = ({
   margin,
-  cellState,
+  gameState,
   notify,
   classInitial,
   classOver,
@@ -12,8 +12,8 @@ const Cell = ({
 }) => {
   const styleFlexItem = { margin: `${margin}px` };
 
-  function reducer(action) {
-    let newState = { ...cellState };
+  function reducer(state, action) {
+    let newState = { ...state };
 
     switch (action.type) {
       case "mouseOver":
@@ -21,11 +21,11 @@ const Cell = ({
         break;
       case "mouseOut":
         if (classOver)
-          newState.className = cellState.selected ? classSelect : classInitial;
+          newState.className = state.selected ? classSelect : classInitial;
         break;
       case "click":
         if (classSelect) {
-          newState.className = cellState.selected ? classInitial : classSelect;
+          newState.className = state.selected ? classInitial : classSelect;
           newState.selected = !newState.selected;
           notify(newState);
         }
@@ -36,13 +36,19 @@ const Cell = ({
     return newState;
   }
 
+  useEffect(() => {
+    console.log(`cell render row ${cellState.row} column ${cellState.column}`);
+  });
+
+  const [cellState, dispatch] = useReducer(reducer, gameState);
+
   return (
     <div
       className={`flex-item ${cellState.className}`}
       style={styleFlexItem}
-      onMouseOver={() => reducer({ type: "mouseOver" })}
-      onMouseOut={() => reducer({ type: "mouseOut" })}
-      onClick={() => reducer({ type: "click" })}
+      onMouseOver={() => dispatch({ type: "mouseOver" })}
+      onMouseOut={() => dispatch({ type: "mouseOut" })}
+      onClick={() => dispatch({ type: "click" })}
     />
   );
 };
