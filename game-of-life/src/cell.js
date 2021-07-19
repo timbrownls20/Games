@@ -18,6 +18,7 @@ const Cell = ({
     switch (action.type) {
       case "mouseOver":
         if (classOver) newState.className = classOver;
+        console.log(JSON.stringify(state))
         break;
       case "mouseOut":
         if (classOver)
@@ -37,7 +38,7 @@ const Cell = ({
   }
 
   useEffect(() => {
-    console.log(`cell render row ${cellState.row} column ${cellState.column}`);
+    //console.log(`cell render row ${cellState.row} column ${cellState.column}`);
   });
 
   const [cellState, dispatch] = useReducer(reducer, gameState);

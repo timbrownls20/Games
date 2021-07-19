@@ -1,12 +1,6 @@
   import React from 'react';
 
-  const gridSettings = ({rowState, columnState, isSquareState, zoomState, marginState}) => {
-
-    const [rows, setRows] = rowState;
-    const [columns, setColumns] = columnState;
-    const [isSquare, setIsSquare] = isSquareState;
-    const [zoom, setZoom] = zoomState;
-    const [margin, setMargin] = marginState;
+  const gridSettings = ({gridState, dispatch}) => {
 
     return (
       <div className="form-panel">
@@ -19,10 +13,9 @@
             min="0"
             className="form-control"
             placeholder="number of columns"
-            value={columns}
+            value={gridState.columns}
             onChange={(e) => {
-              setColumns(e.target.value);
-              if (isSquare) setRows(e.target.value);
+              dispatch({type:'set-columns', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">rows</small>
@@ -32,10 +25,9 @@
             min="0"
             className="form-control"
             placeholder="number of rows"
-            value={rows}
+            value={gridState.rows}
             onChange={(e) => {
-              setRows(e.target.value);
-              if (isSquare) setColumns(e.target.value);
+              dispatch({type:'set-rows', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">zoom</small>
@@ -44,9 +36,9 @@
             min="0"
             className="form-control"
             placeholder="zoom"
-            value={zoom}
+            value={gridState.zoom}
             onChange={(e) => {
-              setZoom(parseInt(e.target.value));
+              dispatch({type:'set-zoom', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">margin</small>
@@ -55,9 +47,9 @@
             min="0"
             className="form-control"
             placeholder="margin px"
-            value={margin}
+            value={gridState.margin}
             onChange={(e) => {
-              setMargin(parseInt(e.target.value));
+              dispatch({type:'set-margin', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">is square</small>
@@ -65,10 +57,12 @@
             type="checkbox"
             className="form-check-input"
             placeholder="is square"
-            checked={isSquare}
+            checked={gridState.isSquare}
             onChange={(e) => {
-              setIsSquare(e.target.checked);
-              if (e.target.checked) setRows(columns);
+              
+              console.log(e.target);
+
+              dispatch({type:'set-isSquare', value:e.target.checked});
             }}
           />
         </div>

@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from "react";
-import memoize from "fast-memoize";
-import utils from "./utils";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
+
+import utils from "./utils";
 import Cell from "./cell";
+import useInterval from "./hooks/useInterval";
 
 const Grid = ({ rows, columns, max, zoom, margin }) => {
-  
   //.. calculate from cell size
   const height = zoom;
   const width = zoom * columns;
@@ -15,7 +15,7 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
     let gameStateInitial = Array.from({ length: max + 1 }, (_, row) => {
       return Array.from({ length: max + 1 }, (_, column) => {
         if (row == 0 || column == 0) return null;
-  
+
         return {
           row: row,
           column: column,
@@ -26,15 +26,30 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
     });
 
     return gameStateInitial;
-  }
+  };
   const gameState = getInitialGameState(max);
 
-  const notify = useCallback((cellState) => {
-    //.. do nothing
-    gameState[cellState.row][cellState.column] = cellState;
-    console.log(`notify ${JSON.stringify(gameState)}`)
-  },[gameState]);
-  
+  const notify = useCallback(
+    (cellState) => {
+      let newCellState = { ...cellState, selected: true };
+      gameState[cellState.row][cellState.column] = newCellState;
+    },
+    [gameState]
+  );
+
+  let tick = 0;
+  useInterval(() => {
+    tick++;
+    if (tick > max) tick = 1;
+    let activeCellState = gameState[tick][tick];
+    let newCellState = {
+      ...activeCellState,
+      selected: true,
+      className: "cell-select",
+    };
+    gameState[tick][tick] = newCellState;
+  }, 1000);
+
   return (
     <>
       <div className="grid-panel">
@@ -42,7 +57,6 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
           return (
             <div key={row} className="flex-container" style={styleContainer}>
               {utils.range(1, columns).map((column) => {
-             
                 return (
                   <Cell
                     key={`${row}-${column}`}
@@ -59,9 +73,10 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
           );
         })}
       </div>
-      {/* <div>
-        {JSON.stringify(gameState)}
-      </div> */}
+      <div>
+        {/* Tick {tick} */}
+        {/* {JSON.stringify(gameState)} */}
+      </div>
     </>
   );
 };
@@ -72,7 +87,7 @@ Grid.propTypes = {
   margin: PropTypes.number,
   rows: PropTypes.number,
   columns: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number,
 };
 
 export default Grid;
