@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useContext } from "react";
+import ConfigContext from "./context/configContext";
 
 // eslint-disable-next-line react/prop-types
 const Cell = ({
@@ -10,6 +11,8 @@ const Cell = ({
   classOver,
   classSelect,
 }) => {
+
+  const config = useContext(ConfigContext);
   const styleFlexItem = { margin: `${margin}px` };
 
   function reducer(state, action) {
@@ -18,7 +21,7 @@ const Cell = ({
     switch (action.type) {
       case "mouseOver":
         if (classOver) newState.className = classOver;
-        console.log(JSON.stringify(state))
+        if(config.Debug) console.log(JSON.stringify(state))
         break;
       case "mouseOut":
         if (classOver)
@@ -38,7 +41,7 @@ const Cell = ({
   }
 
   useEffect(() => {
-    //console.log(`cell render row ${cellState.row} column ${cellState.column}`);
+    if(config.Debug) console.log(`cell render row ${cellState.row} column ${cellState.column}`);
   });
 
   const [cellState, dispatch] = useReducer(reducer, gameState);

@@ -73,10 +73,6 @@ const Grid = ({ rows, columns, max, zoom, margin }) => {
           );
         })}
       </div>
-      <div>
-        {/* Tick {tick} */}
-        {/* {JSON.stringify(gameState)} */}
-      </div>
     </>
   );
 };

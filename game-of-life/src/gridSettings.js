@@ -59,9 +59,6 @@
             placeholder="is square"
             checked={gridState.isSquare}
             onChange={(e) => {
-              
-              console.log(e.target);
-
               dispatch({type:'set-isSquare', value:e.target.checked});
             }}
           />
