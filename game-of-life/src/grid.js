@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useContext } from "react";
 import utils from "./utils";
 import Cell from "./cell";
 import useInterval from "./hooks/useInterval";
+import { GlobalContext } from "./context/globalContext";
 
 const Grid = ({ gridSettingState }) => {
   const { rows, columns, zoom, margin } = gridSettingState;
+
+  const {gameStateDispatch} = useContext(GlobalContext);
 
   //.. calculate from cell size
   const height = zoom;
@@ -13,16 +16,16 @@ const Grid = ({ gridSettingState }) => {
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
   //let tick = 0;
+  //const ticker = diagonal(0);
+
   useInterval(() => {
-    // tick++;
-    // if (tick > max) tick = 1;
-    // let activeCellState = gameState[tick][tick];
-    // let newCellState = {
-    //   ...activeCellState,
-    //   selected: true,
-    //   className: "cell-select",
-    // };
-    // gameState[tick][tick] = newCellState;
+    
+    let newRow = utils.random(1, rows);
+    let newColumn = utils.random(1, columns);
+
+    console.log(`${newRow}::${newColumn}`);
+
+    gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
   }, 1000);
 
   return (

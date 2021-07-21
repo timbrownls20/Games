@@ -11,17 +11,17 @@ function useAppState(initialState) {
     newState[action.row][action.column] = newCellState;
 
     switch (action.type) {
-      case "mouseOver":
+      case "cell-cover":
         if (config.Css.CellOver) newCellState.className = config.Css.CellOver;
         if (config.Debug) console.log(JSON.stringify(cellState));
         break;
-      case "mouseOut":
+      case "cell-out":
         if (config.Css.CellOver)
           newCellState.className = cellState.selected
             ? config.Css.CellSelect
             : config.Css.Cell;
         break;
-      case "click":
+      case "cell-select":
         if (config.Css.CellSelect) {
           newCellState.className = cellState.selected
             ? config.Css.Cell

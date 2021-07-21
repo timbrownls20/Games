@@ -24,8 +24,6 @@ export const GlobalProvider = ({ children }) => {
         gridSettingState, gridSettingStateDispatch, gameState, gameStateDispatch
     };
   
-    console.log(gridSettingState);
-
     return (
       <GlobalContext.Provider value={provider}>{children}</GlobalContext.Provider>
     );

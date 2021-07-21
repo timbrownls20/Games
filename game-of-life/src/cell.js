@@ -21,9 +21,9 @@ const Cell = ({ margin, row, column }) => {
     <div
       className={`flex-item ${cellState.className}`}
       style={styleFlexItem}
-      onMouseOver={() => gameStateDispatch({ type: "mouseOver", row, column })}
-      onMouseOut={() => gameStateDispatch({ type: "mouseOut", row, column })}
-      onClick={() => gameStateDispatch({ type: "click", row, column })}
+      onMouseOver={() => gameStateDispatch({ type: "cell-over", row, column })}
+      onMouseOut={() => gameStateDispatch({ type: "cell-out", row, column })}
+      onClick={() => gameStateDispatch({ type: "cell-select", row, column })}
     />
   );
 };
