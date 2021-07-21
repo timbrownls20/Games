@@ -1,15 +1,15 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function useInterval(callback, delay) {
   const savedCallback = useRef(callback);
 
   // Remember the latest callback if it changes.
-  useLayoutEffect(() => {
+  useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
   // Set up the interval.
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Don't schedule if no delay is specified.
     if (delay === null) {
       return;
