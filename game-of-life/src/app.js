@@ -1,27 +1,21 @@
-import React, {  useReducer } from "react";
+import React, { useContext } from "react";
 import Grid from "./grid";
 import GridSettings from "./gridSettings";
-import GridReducer from "./gridReducer";
+import { GlobalContext } from "./context/globalContext";
 
 const App = () => {
-  const initialState = {
-    rows: 5,
-    columns: 5,
-    max: 1000,
-    isSquare: true,
-    zoom: 50,
-    margin: 1,
-  };
-
-  const [gridState, dispatch] = useReducer(GridReducer, initialState);
+  const { gridSettingState, gridSettingStateDispatch } =
+    useContext(GlobalContext);
 
   return (
     <>
       <div className="container-fluid">
         <div className="game-container">
-          <GridSettings gridState={gridState}
-                         dispatch={dispatch}/>
-          <Grid rows={gridState.rows} columns={gridState.columns} zoom={gridState.zoom} margin={gridState.margin} max={initialState.max} />
+          <GridSettings
+            gridState={gridSettingState}
+            dispatch={gridSettingStateDispatch}
+          />
+          <Grid gridSettingState={gridSettingState} />
         </div>
       </div>
     </>
