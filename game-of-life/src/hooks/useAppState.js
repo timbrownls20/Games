@@ -2,13 +2,11 @@ import { useContext, useReducer } from "react";
 import ConfigContext from "../context/configContext";
 
 function useAppState(initialState) {
-
   const config = useContext(ConfigContext);
-  
-  const GameReducer = (state, action) => {
 
+  const GameReducer = (state, action) => {
     let cellState = state[action.row][action.column];
-    let newCellState = {...cellState};
+    let newCellState = { ...cellState };
     let newState = [...state];
     newState[action.row][action.column] = newCellState;
 
@@ -19,7 +17,7 @@ function useAppState(initialState) {
         break;
       case "mouseOut":
         if (config.Css.CellOver)
-        newCellState.className = cellState.selected
+          newCellState.className = cellState.selected
             ? config.Css.CellSelect
             : config.Css.Cell;
         break;
@@ -28,13 +26,11 @@ function useAppState(initialState) {
           newCellState.className = cellState.selected
             ? config.Css.Cell
             : config.Css.CellSelect;
-            newCellState.selected = !newCellState.selected;
+          newCellState.selected = !newCellState.selected;
         }
         break;
       default:
     }
-
-    
 
     return newState;
   };
@@ -42,7 +38,9 @@ function useAppState(initialState) {
   const GridSettingsReducer = (state, action) => {
     switch (action.type) {
       case "set-rows":
-        return { ...state, rows: action.value };
+        return state.isSquare == true
+          ? { ...state, columns: action.value, rows: action.value }
+          : { ...state, rows: action.value };
       case "set-columns":
         return state.isSquare == true
           ? { ...state, columns: action.value, rows: action.value }
@@ -73,18 +71,25 @@ function useAppState(initialState) {
         };
       });
     });
-    
+
     return gridStateInitial;
   };
 
-  const [gridSettingState, gridSettingStateDispatch] = useReducer(GridSettingsReducer, initialState);
+  const [gridSettingState, gridSettingStateDispatch] = useReducer(
+    GridSettingsReducer,
+    initialState
+  );
+  const [gameState, gameStateDispatch] = useReducer(
+    GameReducer,
+    getInitialGameState(gridSettingState.max)
+  );
 
-  const gameStateInitial = getInitialGameState(gridSettingState.max);
-  const [gameState, gameStateDispatch] = useReducer(GameReducer, gameStateInitial);
-
-  console.log(gridSettingState);
-
-  return {gridSettingState, gridSettingStateDispatch, gameState, gameStateDispatch};
+  return {
+    gridSettingState,
+    gridSettingStateDispatch,
+    gameState,
+    gameStateDispatch,
+  };
 }
 
 export default useAppState;
