@@ -11,7 +11,7 @@ function useAppState(initialState) {
     newState[action.row][action.column] = newCellState;
 
     switch (action.type) {
-      case "cell-cover":
+      case "cell-over":
         if (config.Css.CellOver) newCellState.className = config.Css.CellOver;
         if (config.Debug) console.log(JSON.stringify(cellState));
         break;
