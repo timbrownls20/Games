@@ -15,16 +15,9 @@ const Grid = ({ gridSettingState }) => {
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  //let tick = 0;
-  //const ticker = diagonal(0);
-
   useInterval(() => {
-    
     let newRow = utils.random(1, rows);
     let newColumn = utils.random(1, columns);
-
-    console.log(`${newRow}::${newColumn}`);
-
     gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
   }, 1000);
 

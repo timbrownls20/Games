@@ -1,5 +1,6 @@
 import React from "react";
 import useAppState from "../hooks/useAppState";
+import initialState from "../config/initialState";
 
 export const GlobalContext = React.createContext();
 
@@ -7,14 +8,6 @@ export const GlobalContext = React.createContext();
 export const GlobalProvider = ({ children }) => {
 
     
-  const initialState = {
-    rows: 5,
-    columns: 5,
-    max: 1000,
-    isSquare: true,
-    zoom: 50,
-    margin: 1,
-  };
 
     const {
         gridSettingState, gridSettingStateDispatch, gameState, gameStateDispatch

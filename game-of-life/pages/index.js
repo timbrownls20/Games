@@ -2,7 +2,7 @@ import React from "react";
 import App from "../src/app";
 import ConfigContext from "../src/context/configContext";
 import { GlobalProvider } from "../src/context/globalContext";
-import config from "../src/config";
+import config from "../src/config/config";
 
 const Index = () => {
   
