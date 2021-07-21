@@ -63,6 +63,18 @@
             }}
           />
         </div>
+        <div>
+        <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              dispatch({type:'toggle-start'});
+            }}
+            
+          >
+          {gridState.isStart ? "Stop" : "Start"}
+          </button>
+        </div>
       </form>
       </div>
     )

@@ -5,4 +5,5 @@ export default {
     isSquare: true,
     zoom: 50,
     margin: 1,
+    isStart: false
   };

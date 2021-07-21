@@ -6,18 +6,23 @@ export const GlobalContext = React.createContext();
 
 // eslint-disable-next-line react/prop-types
 export const GlobalProvider = ({ children }) => {
+  const {
+    gridSettingState,
+    gridSettingStateDispatch,
+    gameState,
+    gameStateDispatch,
+    getCellState
+  } = useAppState(initialState);
 
-    
-
-    const {
-        gridSettingState, gridSettingStateDispatch, gameState, gameStateDispatch
-    } = useAppState(initialState);
-  
-    const provider = {
-        gridSettingState, gridSettingStateDispatch, gameState, gameStateDispatch
-    };
-  
-    return (
-      <GlobalContext.Provider value={provider}>{children}</GlobalContext.Provider>
-    );
+  const provider = {
+    gridSettingState,
+    gridSettingStateDispatch,
+    gameState,
+    gameStateDispatch,
+    getCellState
   };
+
+  return (
+    <GlobalContext.Provider value={provider}>{children}</GlobalContext.Provider>
+  );
+};

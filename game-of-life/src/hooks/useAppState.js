@@ -53,6 +53,8 @@ function useAppState(initialState) {
         return { ...state, zoom: action.value };
       case "set-margin":
         return { ...state, margin: action.value };
+      case "toggle-start":
+          return { ...state, isStart: !state.isStart };
       default:
         return state;
     }
@@ -75,6 +77,10 @@ function useAppState(initialState) {
     return gridStateInitial;
   };
 
+  const getCellState = (row, column) => {
+    return gameState[row][column];
+  }
+
   const [gridSettingState, gridSettingStateDispatch] = useReducer(
     GridSettingsReducer,
     initialState
@@ -89,6 +95,7 @@ function useAppState(initialState) {
     gridSettingStateDispatch,
     gameState,
     gameStateDispatch,
+    getCellState,
   };
 }
 

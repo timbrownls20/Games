@@ -6,7 +6,7 @@ import useInterval from "./hooks/useInterval";
 import { GlobalContext } from "./context/globalContext";
 
 const Grid = ({ gridSettingState }) => {
-  const { rows, columns, zoom, margin } = gridSettingState;
+  const { rows, columns, zoom, margin, isStart } = gridSettingState;
 
   const {gameStateDispatch} = useContext(GlobalContext);
 
@@ -19,7 +19,7 @@ const Grid = ({ gridSettingState }) => {
     let newRow = utils.random(1, rows);
     let newColumn = utils.random(1, columns);
     gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
-  }, 1000);
+  }, isStart ? 1000 : null);
 
   return (
     <>
