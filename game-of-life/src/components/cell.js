@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useContext, useMemo } from "react";
-import ConfigContext from "./context/configContext";
-import { GlobalContext} from "./context/globalContext";
+import ConfigContext from "./../context/configContext";
+import { GlobalContext} from "./../context/globalContext";
 
 const Cell = ({ margin, row, column }) => {
   const config = useContext(ConfigContext);

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
-import utils from "./utils";
+import utils from "../utils";
 import Cell from "./cell";
-import useInterval from "./hooks/useInterval";
-import { GlobalContext } from "./context/globalContext";
+import useInterval from "../hooks/useInterval";
+import { GlobalContext } from "../context/globalContext";
 
 const Grid = ({ gridSettingState }) => {
   const { rows, columns, zoom, margin, isStart } = gridSettingState;
