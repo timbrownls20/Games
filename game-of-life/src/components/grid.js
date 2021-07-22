@@ -4,10 +4,10 @@ import utils from "../utils";
 import Cell from "./cell";
 import useInterval from "../hooks/useInterval";
 import { GlobalContext } from "../context/globalContext";
+import { CellProvider } from "../context/cellContext";
 
 const Grid = () => {
-  
-  const {randomTransformer, gridSettingState} = useContext(GlobalContext);
+  const { randomTransformer, gridSettingState } = useContext(GlobalContext);
   const { rows, columns, zoom, margin, isStart } = gridSettingState;
 
   //.. calculate from cell size
@@ -25,12 +25,13 @@ const Grid = () => {
             <div key={row} className="flex-container" style={styleContainer}>
               {utils.range(1, columns).map((column) => {
                 return (
-                  <Cell
-                    key={`${row}-${column}`}
-                    margin={margin}
+                  <CellProvider
                     row={row}
                     column={column}
-                  />
+                    key={`${row}-${column}`}
+                  >
+                    <Cell margin={margin} row={row} column={column} />
+                  </CellProvider>
                 );
               })}
             </div>

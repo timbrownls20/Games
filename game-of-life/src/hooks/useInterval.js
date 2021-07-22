@@ -10,6 +10,7 @@ function useInterval(callback, delay) {
 
   // Set up the interval.
   useEffect(() => {
+    
     // Don't schedule if no delay is specified.
     if (delay === null) {
       return;

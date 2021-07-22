@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useContext, useMemo } from "react";
+import React, { useEffect, useContext } from "react";
 import ConfigContext from "./../context/configContext";
-import { GlobalContext} from "./../context/globalContext";
+import { CellContext } from "./../context/cellContext";
 
 const Cell = ({ margin, row, column }) => {
   const config = useContext(ConfigContext);
-  const { getCellState, gameStateDispatch } = useContext(GlobalContext);
-  const cellState = useMemo(() => getCellState(row, column));
-
+  const { cellState, gameStateDispatch } = useContext(CellContext);
   const styleFlexItem = { margin: `${margin}px` };
 
   useEffect(() => {
