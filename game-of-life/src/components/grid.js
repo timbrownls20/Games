@@ -5,10 +5,10 @@ import Cell from "./cell";
 import useInterval from "../hooks/useInterval";
 import { GlobalContext } from "../context/globalContext";
 
-const Grid = ({ gridSettingState }) => {
+const Grid = () => {
+  
+  const {randomTransformer, gridSettingState} = useContext(GlobalContext);
   const { rows, columns, zoom, margin, isStart } = gridSettingState;
-
-  const {randomTransformer} = useContext(GlobalContext);
 
   //.. calculate from cell size
   const height = zoom;

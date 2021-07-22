@@ -1,9 +1,9 @@
 export default {
-    rows: 5,
-    columns: 5,
+    rows: 50,
+    columns: 50,
     max: 1000,
     isSquare: true,
-    zoom: 50,
+    zoom: 15,
     margin: 1,
     isStart: false
   };

@@ -1,6 +1,10 @@
-  import React from 'react';
+  import React,{useContext} from 'react';
+  import { GlobalContext } from "../context/globalContext";
 
-  const gridSettings = ({gridState, dispatch}) => {
+
+  const gridSettings = () => {
+
+    const { gridSettingState, gridSettingStateDispatch } = useContext(GlobalContext);
 
     return (
       <div className="form-panel">
@@ -13,9 +17,9 @@
             min="0"
             className="form-control"
             placeholder="number of columns"
-            value={gridState.columns}
+            value={gridSettingState.columns}
             onChange={(e) => {
-              dispatch({type:'set-columns', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({type:'set-columns', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">rows</small>
@@ -25,9 +29,9 @@
             min="0"
             className="form-control"
             placeholder="number of rows"
-            value={gridState.rows}
+            value={gridSettingState.rows}
             onChange={(e) => {
-              dispatch({type:'set-rows', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({type:'set-rows', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">zoom</small>
@@ -36,9 +40,9 @@
             min="0"
             className="form-control"
             placeholder="zoom"
-            value={gridState.zoom}
+            value={gridSettingState.zoom}
             onChange={(e) => {
-              dispatch({type:'set-zoom', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({type:'set-zoom', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">margin</small>
@@ -47,9 +51,9 @@
             min="0"
             className="form-control"
             placeholder="margin px"
-            value={gridState.margin}
+            value={gridSettingState.margin}
             onChange={(e) => {
-              dispatch({type:'set-margin', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({type:'set-margin', value:parseInt(e.target.value)});
             }}
           />
           <small className="mx-2">is square</small>
@@ -57,9 +61,9 @@
             type="checkbox"
             className="form-check-input"
             placeholder="is square"
-            checked={gridState.isSquare}
+            checked={gridSettingState.isSquare}
             onChange={(e) => {
-              dispatch({type:'set-isSquare', value:e.target.checked});
+              gridSettingStateDispatch({type:'set-isSquare', value:e.target.checked});
             }}
           />
         </div>
@@ -68,11 +72,11 @@
             type="button"
             className="btn btn-primary"
             onClick={() => {
-              dispatch({type:'toggle-start'});
+              gridSettingStateDispatch({type:'toggle-start'});
             }}
             
           >
-          {gridState.isStart ? "Stop" : "Start"}
+          {gridSettingState.isStart ? "Stop" : "Start"}
           </button>
         </div>
       </form>
