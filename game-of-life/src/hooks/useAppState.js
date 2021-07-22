@@ -1,5 +1,6 @@
 import { useContext, useReducer } from "react";
 import ConfigContext from "../context/configContext";
+import utils from '../utils';
 
 function useAppState(initialState) {
   const config = useContext(ConfigContext);
@@ -89,6 +90,12 @@ function useAppState(initialState) {
     GameReducer,
     getInitialGameState(gridSettingState.max)
   );
+  
+  const randomTransformer = () => {
+    let newRow = utils.random(1, gridSettingState.rows);
+    let newColumn = utils.random(1, gridSettingState.columns);
+    gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
+  }
 
   return {
     gridSettingState,
@@ -96,6 +103,7 @@ function useAppState(initialState) {
     gameState,
     gameStateDispatch,
     getCellState,
+    randomTransformer,
   };
 }
 

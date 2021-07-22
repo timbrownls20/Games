@@ -8,18 +8,14 @@ import { GlobalContext } from "../context/globalContext";
 const Grid = ({ gridSettingState }) => {
   const { rows, columns, zoom, margin, isStart } = gridSettingState;
 
-  const {gameStateDispatch} = useContext(GlobalContext);
+  const {randomTransformer} = useContext(GlobalContext);
 
   //.. calculate from cell size
   const height = zoom;
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  useInterval(() => {
-    let newRow = utils.random(1, rows);
-    let newColumn = utils.random(1, columns);
-    gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
-  }, isStart ? 1000 : null);
+  useInterval(randomTransformer, isStart ? 1000 : null);
 
   return (
     <>

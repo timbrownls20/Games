@@ -11,7 +11,8 @@ export const GlobalProvider = ({ children }) => {
     gridSettingStateDispatch,
     gameState,
     gameStateDispatch,
-    getCellState
+    getCellState,
+    randomTransformer
   } = useAppState(initialState);
 
   const provider = {
@@ -19,7 +20,8 @@ export const GlobalProvider = ({ children }) => {
     gridSettingStateDispatch,
     gameState,
     gameStateDispatch,
-    getCellState
+    getCellState,
+    randomTransformer
   };
 
   return (
