@@ -1,10 +1,9 @@
-import { useContext, useReducer } from "react";
-import ConfigContext from "../context/configContext";
+import { useReducer } from "react";
 import mathsUtil from "../utils/mathsUtil";
 import cellUtil from "../utils/cellUtil";
+import config from "../config/config";
 
 function useAppState(initialState) {
-  const config = useContext(ConfigContext);
 
   const GameReducer = (state, action) => {
     let newState = [...state];
@@ -119,8 +118,8 @@ function useAppState(initialState) {
         if (item && item.selected) {
           let nextRow = item.row <= 1 ? gridSettingState.rows : item.row - 1;
           let cellUp = gameState[nextRow][item.column];
-          arrTransformed.push(cellUtil.toggleCell(cellUp, config));
-          arrTransformed.push(cellUtil.toggleCell(item, config));
+          arrTransformed.push(cellUtil.toggleCell(cellUp));
+          arrTransformed.push(cellUtil.toggleCell(item));
         }
       });
     });

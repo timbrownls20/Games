@@ -1,13 +1,12 @@
-  import React,{useContext} from 'react';
-  import { GlobalContext } from "../context/globalContext";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/globalContext";
 
+const gridSettings = () => {
+  const { gridSettingState, gridSettingStateDispatch, gameStateDispatch } =
+    useContext(GlobalContext);
 
-  const gridSettings = () => {
-
-    const { gridSettingState, gridSettingStateDispatch, gameStateDispatch } = useContext(GlobalContext);
-
-    return (
-      <div className="form-panel">
+  return (
+    <div className="form-panel">
       <form>
         <div className="form-group my-2">
           <small className="mx-2">columns</small>
@@ -19,7 +18,10 @@
             placeholder="number of columns"
             value={gridSettingState.columns}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-columns', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({
+                type: "set-columns",
+                value: parseInt(e.target.value),
+              });
             }}
           />
           <small className="mx-2">rows</small>
@@ -31,7 +33,10 @@
             placeholder="number of rows"
             value={gridSettingState.rows}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-rows', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({
+                type: "set-rows",
+                value: parseInt(e.target.value),
+              });
             }}
           />
           <small className="mx-2">zoom</small>
@@ -42,7 +47,10 @@
             placeholder="zoom"
             value={gridSettingState.zoom}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-zoom', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({
+                type: "set-zoom",
+                value: parseInt(e.target.value),
+              });
             }}
           />
           <small className="mx-2">margin</small>
@@ -53,7 +61,10 @@
             placeholder="margin px"
             value={gridSettingState.margin}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-margin', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({
+                type: "set-margin",
+                value: parseInt(e.target.value),
+              });
             }}
           />
           <small className="mx-2">interval</small>
@@ -65,7 +76,10 @@
             placeholder="interval (ms)"
             value={gridSettingState.interval}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-interval', value:parseInt(e.target.value)});
+              gridSettingStateDispatch({
+                type: "set-interval",
+                value: parseInt(e.target.value),
+              });
             }}
           />
           <small className="mx-2">is square</small>
@@ -75,37 +89,37 @@
             placeholder="is square"
             checked={gridSettingState.isSquare}
             onChange={(e) => {
-              gridSettingStateDispatch({type:'set-isSquare', value:e.target.checked});
+              gridSettingStateDispatch({
+                type: "set-isSquare",
+                value: e.target.checked,
+              });
             }}
           />
         </div>
         <div>
-        <button
+          <button
             type="button"
             className="btn btn-primary"
             onClick={() => {
-              gridSettingStateDispatch({type:'toggle-start'});
+              gridSettingStateDispatch({ type: "toggle-start" });
             }}
-            
           >
-          {gridSettingState.isStarted ? "Stop" : "Go"}
+            {gridSettingState.isStarted ? "Stop" : "Go"}
           </button>
           <button
             type="button"
             className="btn btn-primary mx-2"
             onClick={() => {
-              gridSettingStateDispatch({type:'increment-session'});
-              gameStateDispatch({type:'init'})
+              gridSettingStateDispatch({ type: "increment-session" });
+              gameStateDispatch({ type: "init" });
             }}
-            
           >
-          Restart
+            Restart
           </button>
         </div>
       </form>
-      </div>
-    )
+    </div>
+  );
+};
 
-  }
-
-  export default gridSettings;
+export default gridSettings;

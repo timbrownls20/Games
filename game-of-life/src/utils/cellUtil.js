@@ -1,6 +1,8 @@
+import config from "../config/config";
+
 const cellUtil = {
 
-    toggleCell: (cellState, config) => {
+    toggleCell: (cellState) => {
         let newCellState = { ...cellState };
         newCellState.className = cellState.selected
           ? config.Css.Cell

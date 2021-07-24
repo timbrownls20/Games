@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useContext } from "react";
-import ConfigContext from "./../context/configContext";
 import { CellContext } from "./../context/cellContext";
+import config from "../config/config";
 
 // eslint-disable-next-line react/display-name
 const Cell = ({ margin, row, column }) => {
-  const config = useContext(ConfigContext);
   const { cellState, gameStateDispatch } = useContext(CellContext);
   const styleFlexItem = { margin: `${margin}px` };
 
