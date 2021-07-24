@@ -4,10 +4,14 @@ import mathsUtils from "../utils/mathsUtil";
 import Cell from "./cell";
 import useInterval from "../hooks/useInterval";
 import { GlobalContext } from "../context/globalContext";
-import { CellProvider } from "../context/cellContext";
 
 const Grid = () => {
-  const { oneDirectionTransformer, gridSettingState } = useContext(GlobalContext);
+  const {
+    oneDirectionTransformer,
+    gridSettingState,
+    gameState,
+    gameStateDispatch,
+  } = useContext(GlobalContext);
   const { rows, columns, zoom, margin, isStarted, interval } = gridSettingState;
 
   //.. calculate from cell size
@@ -24,14 +28,17 @@ const Grid = () => {
           return (
             <div key={row} className="flex-container" style={styleContainer}>
               {mathsUtils.range(1, columns).map((column) => {
+                let cellState = gameState[row][column];
+
                 return (
-                  <CellProvider
+                  <Cell
+                    margin={margin}
                     row={row}
                     column={column}
+                    className={cellState.className}
+                    dispatch={gameStateDispatch}
                     key={`${row}-${column}`}
-                  >
-                    <Cell margin={margin} row={row} column={column} />
-                  </CellProvider>
+                  />
                 );
               })}
             </div>

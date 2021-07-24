@@ -1,27 +1,27 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useContext } from "react";
-import { CellContext } from "./../context/cellContext";
+import React, { useEffect } from "react";
+//import { CellContext } from "./../context/cellContext";
 import config from "../config/config";
 
 // eslint-disable-next-line react/display-name
-const Cell = ({ margin, row, column }) => {
-  const { cellState, gameStateDispatch } = useContext(CellContext);
+const Cell = ({ margin, row, column, className, dispatch }) => {
+  //const { cellState, gameStateDispatch } = useContext(CellContext);
   const styleFlexItem = { margin: `${margin}px` };
 
   useEffect(() => {
     if (config.Debug)
       console.log(
-        `cell render row ${cellState.row} column ${cellState.column}`
+        `cell render row ${row} column ${column}`
       );
   });
 
   return (
     <div
-      className={`flex-item ${cellState.className}`}
+      className={`flex-item ${className}`}
       style={styleFlexItem}
-      onMouseOver={() => gameStateDispatch({ type: "cell-over", row, column })}
-      onMouseOut={() => gameStateDispatch({ type: "cell-out", row, column })}
-      onClick={() => gameStateDispatch({ type: "cell-toggle", row, column })}
+      onMouseOver={() => dispatch({ type: "cell-over", row, column })}
+      onMouseOut={() => dispatch({ type: "cell-out", row, column })}
+      onClick={() => dispatch({ type: "cell-toggle", row, column })}
     />
   );
 };
