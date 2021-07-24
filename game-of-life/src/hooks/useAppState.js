@@ -1,42 +1,54 @@
 import { useContext, useReducer } from "react";
 import ConfigContext from "../context/configContext";
-import utils from '../utils';
+import utils from "../utils";
 
 function useAppState(initialState) {
   const config = useContext(ConfigContext);
 
   const GameReducer = (state, action) => {
-    let cellState = state[action.row][action.column];
-    let newCellState = { ...cellState };
     let newState = [...state];
-    newState[action.row][action.column] = newCellState;
 
-    switch (action.type) {
-      case "cell-over":
-        if (config.Css.CellOver) newCellState.className = config.Css.CellOver;
-        if (config.Debug) console.log(JSON.stringify(cellState));
-        break;
-      case "cell-out":
-        if (config.Css.CellOver)
-          newCellState.className = cellState.selected
-            ? config.Css.CellSelect
-            : config.Css.Cell;
-        break;
-      case "cell-toggle":
-        if (config.Css.CellSelect) {
-          newCellState.className = cellState.selected
-            ? config.Css.Cell
-            : config.Css.CellSelect;
-          newCellState.selected = !newCellState.selected;
-        }
-        break;
-      default:
+    if (action.row) {
+      let cellState = state[action.row][action.column];
+      let newCellState = { ...cellState };
+      newState[action.row][action.column] = newCellState;
+
+      switch (action.type) {
+        case "cell-over":
+          if (config.Css.CellOver) newCellState.className = config.Css.CellOver;
+          if (config.Debug) console.log(JSON.stringify(cellState));
+          break;
+        case "cell-out":
+          if (config.Css.CellOver)
+            newCellState.className = cellState.selected
+              ? config.Css.CellSelect
+              : config.Css.Cell;
+          break;
+        case "cell-toggle":
+          if (config.Css.CellSelect) {
+            newCellState.className = cellState.selected
+              ? config.Css.Cell
+              : config.Css.CellSelect;
+            newCellState.selected = !newCellState.selected;
+          }
+          break;
+        default:
+      }
+    } else {
+      switch (action.type) {
+        case "init":
+          newState = getInitialGameState(gridSettingState.max);
+          break;
+        default:
+      }
     }
 
     return newState;
   };
 
   const GridSettingsReducer = (state, action) => {
+    console.log(JSON.stringify(action));
+
     switch (action.type) {
       case "set-rows":
         return state.isSquare == true
@@ -57,7 +69,9 @@ function useAppState(initialState) {
       case "set-interval":
         return { ...state, interval: action.value };
       case "toggle-start":
-          return { ...state, isStart: !state.isStart };
+        return { ...state, isStarted: !state.isStarted };
+      case "increment-session":
+        return { ...state, session: state.session + 1 };
       default:
         return state;
     }
@@ -81,8 +95,8 @@ function useAppState(initialState) {
   };
 
   const getCellState = (row, column) => {
-    return gameState[row][column];
-  }
+    return gameState[row] && gameState[row] ? gameState[row][column] : {};
+  };
 
   const [gridSettingState, gridSettingStateDispatch] = useReducer(
     GridSettingsReducer,
@@ -92,12 +106,12 @@ function useAppState(initialState) {
     GameReducer,
     getInitialGameState(gridSettingState.max)
   );
-  
+
   const randomTransformer = () => {
     let newRow = utils.random(1, gridSettingState.rows);
     let newColumn = utils.random(1, gridSettingState.columns);
-    gameStateDispatch({type:"cell-toggle", row: newRow, column:newColumn})
-  }
+    gameStateDispatch({ type: "cell-toggle", row: newRow, column: newColumn });
+  };
 
   return {
     gridSettingState,

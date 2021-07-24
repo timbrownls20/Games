@@ -1,5 +1,5 @@
 export default {
-  Debug: true,
+  Debug: false,
   Css: {
     Cell: "cell",
     CellSelect: "cell-select",

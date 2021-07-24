@@ -5,6 +5,7 @@ export default {
     isSquare: true,
     zoom: 15,
     margin: 1,
-    isStart: false,
-    interval: 1000
+    isStarted: false,
+    interval: 1000,
+    session: 1
   };

@@ -22,7 +22,7 @@ const Cell = ({ margin, row, column }) => {
       style={styleFlexItem}
       onMouseOver={() => gameStateDispatch({ type: "cell-over", row, column })}
       onMouseOut={() => gameStateDispatch({ type: "cell-out", row, column })}
-      onClick={() => gameStateDispatch({ type: "cell-select", row, column })}
+      onClick={() => gameStateDispatch({ type: "cell-toggle", row, column })}
     />
   );
 };

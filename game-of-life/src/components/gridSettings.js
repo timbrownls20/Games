@@ -4,7 +4,7 @@
 
   const gridSettings = () => {
 
-    const { gridSettingState, gridSettingStateDispatch } = useContext(GlobalContext);
+    const { gridSettingState, gridSettingStateDispatch, gameStateDispatch } = useContext(GlobalContext);
 
     return (
       <div className="form-panel">
@@ -68,10 +68,10 @@
               gridSettingStateDispatch({type:'set-interval', value:parseInt(e.target.value)});
             }}
           />
-          <small className="m-2">is square</small>
+          <small className="mx-2">is square</small>
           <input
             type="checkbox"
-            className="form-check-input"
+            className="form-check-input my-2"
             placeholder="is square"
             checked={gridSettingState.isSquare}
             onChange={(e) => {
@@ -88,7 +88,18 @@
             }}
             
           >
-          {gridSettingState.isStart ? "Stop" : "Start"}
+          {gridSettingState.isStarted ? "Stop" : "Go"}
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary mx-2"
+            onClick={() => {
+              gridSettingStateDispatch({type:'increment-session'});
+              gameStateDispatch({type:'init'})
+            }}
+            
+          >
+          Restart
           </button>
         </div>
       </form>
