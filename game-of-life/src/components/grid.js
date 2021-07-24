@@ -7,7 +7,7 @@ import { GlobalContext } from "../context/globalContext";
 import { CellProvider } from "../context/cellContext";
 
 const Grid = () => {
-  const { randomTransformer, gridSettingState } = useContext(GlobalContext);
+  const { oneDirectionTransformer, gridSettingState } = useContext(GlobalContext);
   const { rows, columns, zoom, margin, isStarted, interval } = gridSettingState;
 
   //.. calculate from cell size
@@ -15,7 +15,7 @@ const Grid = () => {
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  useInterval(randomTransformer, isStarted ? interval : null);
+  useInterval(oneDirectionTransformer, isStarted ? interval : null);
 
   return (
     <>

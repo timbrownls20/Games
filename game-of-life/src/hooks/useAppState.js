@@ -11,7 +11,6 @@ function useAppState(initialState) {
     if (action.row) {
       let cellState = state[action.row][action.column];
       let newCellState = { ...cellState };
-      newState[action.row][action.column] = newCellState;
 
       switch (action.type) {
         case "cell-over":
@@ -34,10 +33,15 @@ function useAppState(initialState) {
           break;
         default:
       }
+
+      newState[action.row][action.column] = newCellState;
     } else {
       switch (action.type) {
         case "init":
           newState = getInitialGameState(gridSettingState.max);
+          break;
+        case "set-state":
+          newState = [...action.value];
           break;
         default:
       }
@@ -47,8 +51,6 @@ function useAppState(initialState) {
   };
 
   const GridSettingsReducer = (state, action) => {
-    console.log(JSON.stringify(action));
-
     switch (action.type) {
       case "set-rows":
         return state.isSquare == true
@@ -98,6 +100,15 @@ function useAppState(initialState) {
     return gameState[row] && gameState[row] ? gameState[row][column] : {};
   };
 
+  const ToggleCell = (cellState) => {
+    let newCellState = { ...cellState };
+    newCellState.className = cellState.selected
+      ? config.Css.Cell
+      : config.Css.CellSelect;
+    newCellState.selected = !newCellState.selected;
+    return newCellState;
+  };
+
   const [gridSettingState, gridSettingStateDispatch] = useReducer(
     GridSettingsReducer,
     initialState
@@ -113,6 +124,29 @@ function useAppState(initialState) {
     gameStateDispatch({ type: "cell-toggle", row: newRow, column: newColumn });
   };
 
+  const oneDirectionTransformer = () => {
+    let arrTransformed = [];
+
+    gameState.filter((row) => {
+      row.filter((item) => {
+        if (item && item.selected) {
+          let nextRow = item.row <= 1 ? gridSettingState.rows : item.row - 1;
+          let cellUp = gameState[nextRow][item.column];
+          arrTransformed.push(ToggleCell(cellUp));
+          arrTransformed.push(ToggleCell(item));
+        }
+      });
+    });
+
+    console.log(JSON.stringify(arrTransformed));
+
+    arrTransformed.filter((element) => {
+      gameState[element.row][element.column] = { ...element };
+    });
+
+    gameStateDispatch({ type: "set-state", value: gameState });
+  };
+
   return {
     gridSettingState,
     gridSettingStateDispatch,
@@ -120,6 +154,7 @@ function useAppState(initialState) {
     gameStateDispatch,
     getCellState,
     randomTransformer,
+    oneDirectionTransformer,
   };
 }
 

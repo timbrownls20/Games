@@ -7,8 +7,6 @@ const App = () => {
 
   const {gridSettingState} = useContext(GlobalContext);
   
-  console.log(JSON.stringify(gridSettingState))
-
   return (
     <>
       <div className="container-fluid">

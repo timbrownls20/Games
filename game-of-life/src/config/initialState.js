@@ -6,6 +6,6 @@ export default {
     zoom: 15,
     margin: 1,
     isStarted: false,
-    interval: 1000,
+    interval: 200,
     session: 1
   };
