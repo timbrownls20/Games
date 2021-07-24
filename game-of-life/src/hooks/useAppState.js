@@ -22,7 +22,7 @@ function useAppState(initialState) {
             ? config.Css.CellSelect
             : config.Css.Cell;
         break;
-      case "cell-select":
+      case "cell-toggle":
         if (config.Css.CellSelect) {
           newCellState.className = cellState.selected
             ? config.Css.Cell
@@ -96,7 +96,7 @@ function useAppState(initialState) {
   const randomTransformer = () => {
     let newRow = utils.random(1, gridSettingState.rows);
     let newColumn = utils.random(1, gridSettingState.columns);
-    gameStateDispatch({type:"cell-select", row: newRow, column:newColumn})
+    gameStateDispatch({type:"cell-toggle", row: newRow, column:newColumn})
   }
 
   return {
