@@ -54,6 +54,8 @@ function useAppState(initialState) {
         return { ...state, zoom: action.value };
       case "set-margin":
         return { ...state, margin: action.value };
+      case "set-interval":
+        return { ...state, interval: action.value };
       case "toggle-start":
           return { ...state, isStart: !state.isStart };
       default:

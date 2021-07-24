@@ -8,14 +8,14 @@ import { CellProvider } from "../context/cellContext";
 
 const Grid = () => {
   const { randomTransformer, gridSettingState } = useContext(GlobalContext);
-  const { rows, columns, zoom, margin, isStart } = gridSettingState;
+  const { rows, columns, zoom, margin, isStart, interval } = gridSettingState;
 
   //.. calculate from cell size
   const height = zoom;
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  useInterval(randomTransformer, isStart ? 1000 : null);
+  useInterval(randomTransformer, isStart ? interval : null);
 
   return (
     <>

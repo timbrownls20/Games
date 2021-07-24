@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from "react";
 import ConfigContext from "./../context/configContext";
 import { CellContext } from "./../context/cellContext";
 
+// eslint-disable-next-line react/display-name
 const Cell = ({ margin, row, column }) => {
   const config = useContext(ConfigContext);
   const { cellState, gameStateDispatch } = useContext(CellContext);

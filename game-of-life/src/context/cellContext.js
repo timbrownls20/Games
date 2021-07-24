@@ -1,4 +1,4 @@
-import React, {useContext, useMemo} from "react";
+import React, {useContext} from "react";
 import { GlobalContext } from "./globalContext";
 
 export const CellContext = React.createContext();
@@ -11,9 +11,8 @@ export const CellProvider = ({ children, row, column }) => {
     gameStateDispatch,
   } = useContext(GlobalContext)
 
-  const cellStateIn = getCellState(row, column);
-  const cellState = useMemo(() => cellStateIn, [cellStateIn]);
-
+  const cellState = getCellState(row, column);
+  
   const provider = {
     cellState,
     gameStateDispatch

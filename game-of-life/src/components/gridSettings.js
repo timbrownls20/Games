@@ -56,7 +56,19 @@
               gridSettingStateDispatch({type:'set-margin', value:parseInt(e.target.value)});
             }}
           />
-          <small className="mx-2">is square</small>
+          <small className="mx-2">interval</small>
+          <input
+            type="number"
+            min="100"
+            step="5"
+            className="form-control"
+            placeholder="interval (ms)"
+            value={gridSettingState.interval}
+            onChange={(e) => {
+              gridSettingStateDispatch({type:'set-interval', value:parseInt(e.target.value)});
+            }}
+          />
+          <small className="m-2">is square</small>
           <input
             type="checkbox"
             className="form-check-input"
