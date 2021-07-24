@@ -70,7 +70,7 @@ function useAppState(initialState) {
       case "increment-session":
         return { ...state, session: state.session + 1 };
       default:
-        return state;
+        return {...state};
     }
   };
 
