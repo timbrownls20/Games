@@ -1,6 +1,7 @@
 import { useContext, useReducer } from "react";
 import ConfigContext from "../context/configContext";
-import utils from "../utils";
+import mathsUtil from "../utils/mathsUtil";
+import cellUtil from "../utils/cellUtil";
 
 function useAppState(initialState) {
   const config = useContext(ConfigContext);
@@ -24,12 +25,7 @@ function useAppState(initialState) {
               : config.Css.Cell;
           break;
         case "cell-toggle":
-          if (config.Css.CellSelect) {
-            newCellState.className = cellState.selected
-              ? config.Css.Cell
-              : config.Css.CellSelect;
-            newCellState.selected = !newCellState.selected;
-          }
+          newCellState = cellUtil.toggleCell(cellState, config);
           break;
         default:
       }
@@ -100,15 +96,6 @@ function useAppState(initialState) {
     return gameState[row] && gameState[row] ? gameState[row][column] : {};
   };
 
-  const ToggleCell = (cellState) => {
-    let newCellState = { ...cellState };
-    newCellState.className = cellState.selected
-      ? config.Css.Cell
-      : config.Css.CellSelect;
-    newCellState.selected = !newCellState.selected;
-    return newCellState;
-  };
-
   const [gridSettingState, gridSettingStateDispatch] = useReducer(
     GridSettingsReducer,
     initialState
@@ -119,8 +106,8 @@ function useAppState(initialState) {
   );
 
   const randomTransformer = () => {
-    let newRow = utils.random(1, gridSettingState.rows);
-    let newColumn = utils.random(1, gridSettingState.columns);
+    let newRow = mathsUtil.random(1, gridSettingState.rows);
+    let newColumn = mathsUtil.random(1, gridSettingState.columns);
     gameStateDispatch({ type: "cell-toggle", row: newRow, column: newColumn });
   };
 
@@ -132,13 +119,11 @@ function useAppState(initialState) {
         if (item && item.selected) {
           let nextRow = item.row <= 1 ? gridSettingState.rows : item.row - 1;
           let cellUp = gameState[nextRow][item.column];
-          arrTransformed.push(ToggleCell(cellUp));
-          arrTransformed.push(ToggleCell(item));
+          arrTransformed.push(cellUtil.toggleCell(cellUp, config));
+          arrTransformed.push(cellUtil.toggleCell(item, config));
         }
       });
     });
-
-    console.log(JSON.stringify(arrTransformed));
 
     arrTransformed.filter((element) => {
       gameState[element.row][element.column] = { ...element };

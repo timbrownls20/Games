@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
-import utils from "../utils";
+import mathsUtils from "../utils/mathsUtil";
 import Cell from "./cell";
 import useInterval from "../hooks/useInterval";
 import { GlobalContext } from "../context/globalContext";
@@ -20,10 +20,10 @@ const Grid = () => {
   return (
     <>
       <div className="grid-panel">
-        {utils.range(1, rows).map((row) => {
+        {mathsUtils.range(1, rows).map((row) => {
           return (
             <div key={row} className="flex-container" style={styleContainer}>
-              {utils.range(1, columns).map((column) => {
+              {mathsUtils.range(1, columns).map((column) => {
                 return (
                   <CellProvider
                     row={row}
