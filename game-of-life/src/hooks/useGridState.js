@@ -2,7 +2,7 @@ import { useReducer, useContext } from "react";
 import cellUtil from "../utils/cellUtil";
 import config from "../config/config";
 import { GlobalContext } from "../context/globalContext";
-import oneDirection from "./transformers/oneDirection";
+import linear from "./transformers/linear";
 import random from "./transformers/random";
 
 function useGridState() {
@@ -28,6 +28,10 @@ function useGridState() {
           break;
         case "cell-toggle":
           newCellState = cellUtil.toggleCell(cellState, config);
+          break;
+        case "cell-select":
+          newCellState.selected = true;
+          newCellState.className = config.Css.CellSelect;
           break;
         default:
       }
@@ -76,15 +80,15 @@ function useGridState() {
 
   const randomTransformer = () => random(gridSettingState, gameStateDispatch);
 
-  const oneDirectionTransformer = () =>
-    oneDirection(gameState, gridSettingState, gameStateDispatch);
+  const linearTransformer = () =>
+    linear(gameState, gridSettingState, gameStateDispatch);
 
   return {
     gameState,
     gameStateDispatch,
     getCellState,
     randomTransformer,
-    oneDirectionTransformer,
+    linearTransformer,
   };
 }
 

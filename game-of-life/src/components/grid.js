@@ -11,7 +11,7 @@ const Grid = () => {
   const { gridSettingState } = useContext(GlobalContext);
 
   const {
-    oneDirectionTransformer,
+    linearTransformer,
     gameState,
     gameStateDispatch,
   } = useContext(GridContext);
@@ -23,7 +23,7 @@ const Grid = () => {
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  useInterval(oneDirectionTransformer, isStarted ? interval : null);
+  useInterval(linearTransformer, isStarted ? interval : null);
 
   return (
     <>
