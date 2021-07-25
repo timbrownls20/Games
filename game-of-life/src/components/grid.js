@@ -11,7 +11,7 @@ const Grid = () => {
   const { gridSettingState } = useContext(GlobalContext);
 
   const {
-    linearTransformer,
+    gameOfLifeTransformer,
     gameState,
     gameStateDispatch,
   } = useContext(GridContext);
@@ -23,7 +23,7 @@ const Grid = () => {
   const width = zoom * columns;
   const styleContainer = { width: `${width}px`, height: `${height}px` };
 
-  useInterval(linearTransformer, isStarted ? interval : null);
+  useInterval(gameOfLifeTransformer, isStarted ? interval : null);
 
   return (
     <>

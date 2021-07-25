@@ -4,6 +4,7 @@ import config from "../config/config";
 import { GlobalContext } from "../context/globalContext";
 import linear from "./transformers/linear";
 import random from "./transformers/random";
+import gameOfLife from "./transformers/gameOfLife";
 
 function useGridState() {
   const { gridSettingState } = useContext(GlobalContext);
@@ -79,9 +80,8 @@ function useGridState() {
   );
 
   const randomTransformer = () => random(gridSettingState, gameStateDispatch);
-
-  const linearTransformer = () =>
-    linear(gameState, gridSettingState, gameStateDispatch);
+  const linearTransformer = () => linear(gameState, gridSettingState, gameStateDispatch);
+  const gameOfLifeTransformer = () => gameOfLife(gameState, gridSettingState, gameStateDispatch);
 
   return {
     gameState,
@@ -89,6 +89,7 @@ function useGridState() {
     getCellState,
     randomTransformer,
     linearTransformer,
+    gameOfLifeTransformer
   };
 }
 

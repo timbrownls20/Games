@@ -10,7 +10,8 @@ export const GridProvider = ({ children }) => {
     gameStateDispatch,
     getCellState,
     randomTransformer,
-    linearTransformer
+    linearTransformer,
+    gameOfLifeTransformer
   } = useGridState();
 
   const provider = {
@@ -18,7 +19,8 @@ export const GridProvider = ({ children }) => {
     gameStateDispatch,
     getCellState,
     randomTransformer,
-    linearTransformer
+    linearTransformer,
+    gameOfLifeTransformer
   };
 
   return (

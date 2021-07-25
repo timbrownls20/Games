@@ -27,20 +27,8 @@ const linear = (gameState, gridSettingState, gameStateDispatch) => {
       (e) => e.column == cellToAdd.column && e.row == cellToAdd.row
     );
     if (existingCell) {
-      console.log(
-        `merge cell ${JSON.stringify(existingCell)} into ${JSON.stringify(
-          cellToAdd
-        )}`
-      );
-
       cellToAdd =
         existingCell.selected && !cellToAdd.selected ? existingCell : cellToAdd;
-
-      console.log(
-        `merged cell ${JSON.stringify(existingCell)} into ${JSON.stringify(
-          cellToAdd
-        )}`
-      );
     }
 
     arrTransformed.push(cellToAdd);
