@@ -1,12 +1,12 @@
 import { useReducer, useContext } from "react";
-import mathsUtil from "../utils/mathsUtil";
 import cellUtil from "../utils/cellUtil";
 import config from "../config/config";
-import {GlobalContext} from '../context/globalContext';
+import { GlobalContext } from "../context/globalContext";
+import oneDirection from "./transformers/oneDirection";
+import random from "./transformers/random";
 
 function useGridState() {
-
-const {gridSettingState } = useContext(GlobalContext);
+  const { gridSettingState } = useContext(GlobalContext);
 
   const GameReducer = (state, action) => {
     let newState = [...state];
@@ -68,38 +68,16 @@ const {gridSettingState } = useContext(GlobalContext);
   const getCellState = (row, column) => {
     return gameState[row] && gameState[row] ? gameState[row][column] : {};
   };
-  
+
   const [gameState, gameStateDispatch] = useReducer(
     GameReducer,
     getInitialGameState(gridSettingState.max)
   );
 
-  const randomTransformer = () => {
-    let newRow = mathsUtil.random(1, gridSettingState.rows);
-    let newColumn = mathsUtil.random(1, gridSettingState.columns);
-    gameStateDispatch({ type: "cell-toggle", row: newRow, column: newColumn });
-  };
+  const randomTransformer = () => random(gridSettingState, gameStateDispatch);
 
-  const oneDirectionTransformer = () => {
-    let arrTransformed = [];
-
-    gameState.filter((row) => {
-      row.filter((item) => {
-        if (item && item.selected) {
-          let nextRow = item.row <= 1 ? gridSettingState.rows : item.row - 1;
-          let cellUp = gameState[nextRow][item.column];
-          arrTransformed.push(cellUtil.toggleCell(cellUp));
-          arrTransformed.push(cellUtil.toggleCell(item));
-        }
-      });
-    });
-
-    arrTransformed.filter((element) => {
-      gameState[element.row][element.column] = { ...element };
-    });
-
-    gameStateDispatch({ type: "set-state", value: gameState });
-  };
+  const oneDirectionTransformer = () =>
+    oneDirection(gameState, gridSettingState, gameStateDispatch);
 
   return {
     gameState,
