@@ -12,8 +12,8 @@ const App = () => {
     <>
       <div className="container-fluid">
         <div className="game-container">
-          <GridSettings key={gridSettingState.session} />
-          <GridProvider>
+        <GridProvider>
+            <GridSettings key={gridSettingState.session} />
             <Grid />
           </GridProvider>
         </div>

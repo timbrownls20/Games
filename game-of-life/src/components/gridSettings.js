@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/globalContext";
+import { GridContext } from "../context/gridContext";
 
 const gridSettings = () => {
-  const { gridSettingState, gridSettingStateDispatch, gameStateDispatch } =
-    useContext(GlobalContext);
+
+  const { gridSettingState, gridSettingStateDispatch } = useContext(GlobalContext);
+  const { gameStateDispatch } = useContext(GridContext);
 
   return (
     <div className="form-panel">
