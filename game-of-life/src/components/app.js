@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Grid from "./grid";
 import GridSettings from "./gridSettings";
 import { GlobalContext } from "../context/globalContext";
+import { GridProvider } from "../context/gridContext";
 
 const App = () => {
 
@@ -12,7 +13,9 @@ const App = () => {
       <div className="container-fluid">
         <div className="game-container">
           <GridSettings key={gridSettingState.session} />
-          <Grid />
+          <GridProvider>
+            <Grid />
+          </GridProvider>
         </div>
       </div>
     </>

@@ -8,22 +8,12 @@ export const GlobalContext = React.createContext();
 export const GlobalProvider = ({ children }) => {
   const {
     gridSettingState,
-    gridSettingStateDispatch,
-    gameState,
-    gameStateDispatch,
-    getCellState,
-    randomTransformer,
-    oneDirectionTransformer
+    gridSettingStateDispatch
   } = useAppState(initialState);
 
   const provider = {
     gridSettingState,
-    gridSettingStateDispatch,
-    gameState,
-    gameStateDispatch,
-    getCellState,
-    randomTransformer,
-    oneDirectionTransformer
+    gridSettingStateDispatch
   };
 
   return (

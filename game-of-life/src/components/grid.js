@@ -4,14 +4,18 @@ import mathsUtils from "../utils/mathsUtil";
 import Cell from "./cell";
 import useInterval from "../hooks/useInterval";
 import { GlobalContext } from "../context/globalContext";
+import { GridContext } from "../context/gridContext";
 
 const Grid = () => {
+  
+  const { gridSettingState } = useContext(GlobalContext);
+
   const {
     oneDirectionTransformer,
-    gridSettingState,
     gameState,
     gameStateDispatch,
-  } = useContext(GlobalContext);
+  } = useContext(GridContext);
+
   const { rows, columns, zoom, margin, isStarted, interval } = gridSettingState;
 
   //.. calculate from cell size
