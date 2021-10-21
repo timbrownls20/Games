@@ -9,13 +9,13 @@ export class Game {
     get outcomeDisplay(){
         
         if(this.outcome === GameOutcome.Lost){
-            return "Ouch! You've just prodded poor Tiddles. You've lost.";
+            return "Ouch! You've just prodded poor Kitty. You've lost.";
         }
         else if(this.outcome === GameOutcome.Won){
-            return "You've found all the Tiddles. Well done!!";
+            return "You've found all the Kitty. Well done!!";
         }
 
-        return "Where's Tiddles?";
+        return "Where's Kitty?";
     }
 
     constructor(){

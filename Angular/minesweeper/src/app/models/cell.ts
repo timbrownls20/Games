@@ -19,7 +19,6 @@ export class Cell {
         this.row = row;
         this.column = column;
         this.state = CellState.covered;
-        //this.state = CellState.flag;
         this.hasMine = false;
         this.surroundingMines = 0;
     }
